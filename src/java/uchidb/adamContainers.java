@@ -23,7 +23,16 @@ public class adamContainers implements Containers{
 		return hmap;
 	}
 	public void storeMap(Map<S,T> mapToStoreInClass){
-		storedMap = mapToStoreInClass
+		storedMap = mapToStoreInClass;
+	}
+	public boolean addToMap(S key, T value, boolean overwriteExistingKey){
+		if(!Map.containsKey(key) || overwriteExistingKey){
+			Map.put(key, value);
+			if (Map.get(key)==value){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	
