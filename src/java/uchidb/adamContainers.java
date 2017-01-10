@@ -3,6 +3,7 @@ package uchidb;
 import java.util.Map;
 
 public class adamContainers implements Containers{
+	public adamContainers(){};
 	public Map<S,T> storedMap;
 	public Set<T> initSet(T[] tArray){
 		HashSet<T> tSet = new HashSet<T>();
@@ -26,14 +27,22 @@ public class adamContainers implements Containers{
 		storedMap = mapToStoreInClass;
 	}
 	public boolean addToMap(S key, T value, boolean overwriteExistingKey){
-		if(!Map.containsKey(key) || overwriteExistingKey){
-			Map.put(key, value);
-			if (Map.get(key)==value){
+		if(!storedMap.containsKey(key) || overwriteExistingKey){
+			storedMap.put(key, value);
+			if (storedMap.get(key)==value){
 				return true;
 			}
 		}
 		return false;
 	}
-	
+	public T getValueFromMap(S key){
+		return storedMap.get(key);
+	}
+	public T getValueFromMap(S key, T defaultValue){
+		if (storedMap.containsKey(key)){
+			return defaultValue;
+		}
+		return storedMap.get(key);
+	}
 	
 }
